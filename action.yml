@@ -1,4 +1,5 @@
 name: "runs-on: freebsd-latest"
+description: 💻 Emulate 'runs-on: freebsd-latest' for GitHub Actions
 runs:
   using: composite
   steps:
