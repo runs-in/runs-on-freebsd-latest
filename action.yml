@@ -1,4 +1,4 @@
-name: runs-on: freebsd-latest
+name: runs-on freebsd-latest
 description: 💻 Emulate 'runs-on: freebsd-latest' for GitHub Actions
 author: Jacob Hummer <jcbhmr@outlook.com>
 branding:
@@ -9,4 +9,4 @@ runs:
   steps:
     - shell: bash
       # prettier-ignore
-      run: # echo '::error::You need to use the reusable workflow! Check out the website for a short getting started guide. https://jcbhmr.github.io/runs-on-freebsd-latest/' && exit 1
+      run: echo '::error::You need to use the reusable workflow! Check out the website for a short getting started guide. https://jcbhmr.github.io/runs-on-freebsd-latest/' && exit 1
