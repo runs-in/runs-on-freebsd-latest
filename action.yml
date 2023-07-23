@@ -4,7 +4,6 @@ author: Jacob Hummer <jcbhmr@outlook.com>
 branding:
   icon: terminal
   color: green
-inputs: {}
 runs:
   using: composite
   steps:
