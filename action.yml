@@ -1,5 +1,5 @@
-name: runs-on freebsd-latest
-description: 💻 Emulate 'runs-on: freebsd-latest' for GitHub Actions
+name: "runs-on: freebsd-latest"
+description: "💻 Emulate 'runs-on: freebsd-latest' for GitHub Actions"
 author: Jacob Hummer <jcbhmr@outlook.com>
 branding:
   icon: terminal
