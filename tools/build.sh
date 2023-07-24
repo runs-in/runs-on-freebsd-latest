@@ -27,9 +27,8 @@ sudo launchctl load -w /System/Library/LaunchDaemons/ssh.plist
 vboxmanage --version
 vboxmanage_version=$(vboxmanage --version | cut -d r -f 1)
 
-curl -fsSLo oracle-vm.vbox-extpack "https://download.virtualbox.org/virtualbox/$vboxmanage_version/Oracle_VM_VirtualBox_Extension_Pack-$vboxmanage_version.vbox-extpack"
-yes | sudo vboxmanage extpack install --replace oracle-vm.vbox-extpack
-vboxmanage list extpacks
+curl -fsSLO "https://download.virtualbox.org/virtualbox/$vboxmanage_version/Oracle_VM_VirtualBox_Extension_Pack-$vboxmanage_version.vbox-extpack"
+yes | sudo vboxmanage extpack install --replace *.vbox-extpack
 
 sudo vboxmanage controlvm freebsd poweroff || true
 sudo vboxmanage unregistervm freebsd --delete || true
