@@ -1,4 +1,4 @@
-name: Test FreeBSD VM
+name: "Test 'runs-on: freebsd-latest'"
 on:
   push:
     branches: "main"
@@ -7,23 +7,22 @@ on:
       - LICENSE
       - README.md
       - .github/**
-      - "!.github/workflows/test-freebsd-vm.yml"
+      - "!.github/workflows/test-action.yml"
   pull_request:
     paths-ignore:
       - .gitignore
       - LICENSE
       - README.md
       - .github/**
-      - "!.github/workflows/test-freebsd-vm.yml"
+      - "!.github/workflows/test-action.yml"
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
   cancel-in-progress: true
 jobs:
-  build-freebsd-vm:
-    uses: ./.github/workflows/build-freebsd-vm.yml
-  test-freebsd-vm:
-    needs: build-freebsd-vm
-    runs-on: macos-12
+  should-error:
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: bash -x tools/test-freebsd-vm.sh
+      - uses: ./
+        continue-on-error: true
+      - if: success()
+        run: echo 'Didn't error!'; exit 1

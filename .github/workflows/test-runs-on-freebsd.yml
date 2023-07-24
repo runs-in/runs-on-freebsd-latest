@@ -1,0 +1,56 @@
+name: "Test 'runs-on: freebsd-latest'"
+on:
+  push:
+    branches: "main"
+    paths-ignore:
+      - .gitignore
+      - LICENSE
+      - README.md
+      - .github/**
+      - "!.github/workflows/test-freebsd-vm.yml"
+  pull_request:
+    paths-ignore:
+      - .gitignore
+      - LICENSE
+      - README.md
+      - .github/**
+      - "!.github/workflows/test-freebsd-vm.yml"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  c-hello-world:
+    uses: ./.github/workflows/freebsd.yml
+    with:
+      runs-on: freebsd-latest
+      steps: |
+        - run: |
+            echo <<EOF >hello-world.c
+            #include <stdio.h>
+            int main(void) {
+              printf("Hello world!\n");
+              return 0;
+            }
+            EOF
+        - run: cc hello-world.c -o hello-world
+        - run: ./hello-world
+  js-hello-world:
+    uses: ./.github/workflows/freebsd.yml
+    with:
+      runs-on: freebsd-latest
+      steps: |
+        - run: |
+            echo <<EOF >hello-world.js
+            console.log('Hello world!');
+            EOF
+        - run: node hello-world.js
+  py-hello-world:
+    uses: ./.github/workflows/freebsd.yml
+    with:
+      runs-on: freebsd-latest
+      steps: |
+        - run: |
+            echo <<EOF >hello-world.py
+            print('Hello world!')
+            EOF
+        - run: python hello-world.py
