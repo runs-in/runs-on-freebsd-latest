@@ -1,0 +1,17 @@
+{
+  "name": "@runs-on/freebsd",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "lint": "prettier -w . && deno check src/main.ts",
+    "test": "deno test -A",
+    "build": "deno compile -A --no-check src/main.ts -o dist/runs-on-freebsd"
+  },
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/cache": "^3.2.1",
+    "execa": "^7.1.1",
+    "yaml": "^2.3.1"
+  }
+}

@@ -25,6 +25,7 @@ jobs:
     uses: ./.github/workflows/freebsd.yml
     with:
       runs-on: freebsd-latest
+      env: { hello: world }
       steps: |
         - run: |
             echo <<EOF >hello-world.c
