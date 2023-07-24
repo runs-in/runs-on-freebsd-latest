@@ -1,16 +1,16 @@
 {
-  "name": "@runs-on/freebsd",
+  "name": "@runs-on/freebsd-latest",
+  "private": true,
   "version": "0.0.0",
   "type": "module",
-  "private": true,
   "scripts": {
     "lint": "prettier -w . && deno check src/main.ts",
-    "test": "deno test -A",
-    "build": "deno compile -A --no-check src/main.ts -o dist/runs-on-freebsd"
+    "test": "deno test -A"
   },
   "dependencies": {
-    "@actions/core": "^1.10.0",
     "@actions/cache": "^3.2.1",
+    "@actions/core": "^1.10.0",
+    "arktype": "^1.0.16-alpha",
     "execa": "^7.1.1",
     "yaml": "^2.3.1"
   }

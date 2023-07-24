@@ -8,13 +8,13 @@ on:
       needs:
         type: string
       if:
-        type: boolean
+        type: string
       runs-on:
         type: string
       environmment:
         type: string
       concurrency:
-        type: number
+        type: string
       outputs:
         type: string
       env:
@@ -25,11 +25,11 @@ on:
         type: string
         required: true
       timeout-minutes:
-        type: number
+        type: string
       strategy:
         type: string
       continue-on-error:
-        type: boolean
+        type: string
       container:
         type: string
       services:
@@ -44,7 +44,8 @@ jobs:
   freebsd:
     runs-on: macos-12
     steps:
-      - uses: actions/checkout@v3
       # - uses: runs-on/freebsd@v0.1.0
+      #   with: ${{ inputs }}
+      - uses: actions/checkout@v3
       - uses: ./
         with: ${{ inputs }}

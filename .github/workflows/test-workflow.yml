@@ -1,4 +1,4 @@
-name: Test FreeBSD
+name: Test workflow
 on:
   push:
     branches: "main"
@@ -15,16 +15,15 @@ on:
       - LICENSE
       - README.md
       - .github/**
-      - "!.github/workflows/test-freebsd.yml"
-      - "!.github/workflows/freebsd.yml"
+      - "!.github/workflows/test-workflow.yml"
+      - "!.github/workflows/workflow.yml"
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
   cancel-in-progress: true
 jobs:
   c-hello-world:
-    uses: ./.github/workflows/freebsd.yml
+    uses: ./.github/workflows/workflow.yml
     with:
-      runs-on: freebsd-latest
       steps: |
         - run: |
             echo <<EOF >hello-world.c
@@ -37,9 +36,8 @@ jobs:
         - run: cc hello-world.c -o hello-world
         - run: ./hello-world
   js-hello-world:
-    uses: ./.github/workflows/freebsd.yml
+    uses: ./.github/workflows/workflow.yml
     with:
-      runs-on: freebsd-latest
       steps: |
         - run: |
             echo <<EOF >hello-world.js
@@ -47,9 +45,8 @@ jobs:
             EOF
         - run: node hello-world.js
   py-hello-world:
-    uses: ./.github/workflows/freebsd.yml
+    uses: ./.github/workflows/workflow.yml
     with:
-      runs-on: freebsd-latest
       steps: |
         - run: |
             echo <<EOF >hello-world.py

@@ -19,9 +19,44 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref_name }}
   cancel-in-progress: true
 jobs:
-  should-error:
-    runs-on: ubuntu-latest
+  c-hello-world:
+    runs-on: macos-12
     steps:
       - uses: actions/checkout@v3
       - uses: ./
-        continue-on-error: true
+        with:
+          steps: |
+            - run: |
+                echo <<EOF >hello-world.c
+                #include <stdio.h>
+                int main(void) {
+                  printf("Hello world!\n");
+                  return 0;
+                }
+                EOF
+            - run: cc hello-world.c -o hello-world
+            - run: ./hello-world
+  js-hello-world:
+    runs-on: macos-12
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          steps: |
+            - run: |
+                echo <<EOF >hello-world.js
+                console.log('Hello world!');
+                EOF
+            - run: node hello-world.js
+  py-hello-world:
+    runs-on: macos-12
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
+        with:
+          steps: |
+            - run: |
+                echo <<EOF >hello-world.py
+                print('Hello world!')
+                EOF
+            - run: python hello-world.py
