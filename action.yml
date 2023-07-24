@@ -5,44 +5,10 @@ branding:
   icon: terminal
   color: green
 inputs:
-  "You're using it wrong!":
+  "Use the reusable workflow instead!":
     description: https://github.com/runs-on/freebsd#readme
 runs:
   using: composite
   steps:
     - shell: bash
-      run: |
-        echo <<EOF >error.txt
-        Whoops! This project is intended to be used as a GitHub Actions workflow
-        which means using it like this:
-
-          on: push
-          jobs:
-            hello-world:
-              uses: runs-on/freebsd/.github/workflows/main.yml@v1
-              with:
-                runs-on: freebsd-latest
-                steps: |
-                  - run: echo "Hello FreeBSD!"
-
-        ...and not like this:
-
-          on: push
-          jobs:
-            hello-world:
-              runs-on: ubuntu-latest
-              steps:
-                - uses: runs-on/freebsd@v1 # 🛑 This doesn't work!
-                  with:
-                    runs-on: freebsd-latest
-                    steps: |
-                      - run: echo "Hello FreeBSD!"
-
-        You can check out the README.md on GitHub if you'd like some more
-        information. There's also some more examples if you just want something
-        to copy-paste! 😉
-
-        https://github.com/runs-on/freebsd#readme
-        EOF
-        echo "::error::$(cat error.txt | sed ':a;N;$!ba;s/\n/%0A/g')"
-        exit 1
+      run: echo 'https://github.com/runs-on/freebsd#readme'; exit 1
