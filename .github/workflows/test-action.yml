@@ -22,6 +22,7 @@ jobs:
   should-error:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - uses: ./
         continue-on-error: true
       - if: success()
