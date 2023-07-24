@@ -1,4 +1,4 @@
-name: "runs-on: freebsd-latest"
+name: runs-on FreeBSD
 on:
   workflow_call: {}
 jobs: []

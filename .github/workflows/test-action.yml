@@ -1,4 +1,4 @@
-name: "Test 'runs-on: freebsd-latest'"
+name: Test action
 on:
   push:
     branches: "main"
