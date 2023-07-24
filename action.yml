@@ -5,10 +5,68 @@ branding:
   icon: terminal
   color: green
 inputs:
-  "Use the reusable workflow instead!":
-    description: https://github.com/runs-on/freebsd#readme
+  name:
+    type: string
+  permissions:
+    type: string
+  needs:
+    type: string
+  if:
+    type: boolean
+  runs-on:
+    type: string
+  environmment:
+    type: string
+  concurrency:
+    type: number
+  outputs:
+    type: string
+  env:
+    type: string
+  defaults:
+    type: string
+  steps:
+    type: string
+    required: true
+  timeout-minutes:
+    type: number
+  strategy:
+    type: string
+  continue-on-error:
+    type: boolean
+  container:
+    type: string
+  services:
+    type: string
+  uses:
+    type: string
+  with:
+    type: string
+  secrets:
+    type: string
 runs:
   using: composite
   steps:
     - shell: bash
-      run: echo 'https://github.com/runs-on/freebsd#readme'; exit 1
+      # run: '"$GITHUB_ACTIONS_PATH/denow" "$GITHUB_ACTIONS_PATH/main.ts"'
+      run: printenv
+      env:
+        INPUT_NAME: ${{ inputs.name }}
+        INPUT_PERMISSIONS: ${{ inputs.permissions }}
+        INPUT_NEEDS: ${{ inputs.needs }}
+        INPUT_IF: ${{ inputs.if }}
+        INPUT_RUNS_ON: ${{ inputs.runs-on }}
+        INPUT_ENVIRONMENT: ${{ inputs.environmment }}
+        INPUT_CONCURRENCY: ${{ inputs.concurrency }}
+        INPUT_OUTPUTS: ${{ inputs.outputs }}
+        INPUT_ENV: ${{ inputs.env }}
+        INPUT_DEFAULTS: ${{ inputs.defaults }}
+        INPUT_STEPS: ${{ inputs.steps }}
+        INPUT_TIMEOUT_MINUTES: ${{ inputs.timeout-minutes }}
+        INPUT_STRATEGY: ${{ inputs.strategy }}
+        INPUT_CONTINUE_ON_ERROR: ${{ inputs.continue-on-error }}
+        INPUT_CONTAINER: ${{ inputs.container }}
+        INPUT_SERVICES: ${{ inputs.services }}
+        INPUT_USES: ${{ inputs.uses }}
+        INPUT_WITH: ${{ inputs.with }}
+        INPUT_SECRETS: ${{ inputs.secrets }}
