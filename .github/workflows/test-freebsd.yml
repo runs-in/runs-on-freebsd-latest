@@ -1,4 +1,4 @@
-name: Test runs-on FreeBSD
+name: Test FreeBSD
 on:
   push:
     branches: "main"

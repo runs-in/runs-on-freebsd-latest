@@ -1,5 +1,6 @@
-name: runs-on FreeBSD
-run-name: ${{ inputs.runs-on }}
+# https://github.com/runs-on/freebsd
+# MIT License
+# Copyright (c) 2023 runs-on
 on:
   workflow_call:
     inputs:
@@ -9,12 +10,18 @@ on:
       steps:
         type: string
         required: true
+      env:
+        type: string
 jobs:
   freebsd:
-    name: ""
     runs-on: macos-12
     steps:
-      - run: echo "$JSON"
-        env: { JSON: "${{ toJSON(github) }}" }
-      - name: "🌟 MAIN"
-        run: true # curl -fsSL https://raw.githubusercontent.com/runs-on/freebsd/main/main.sh | bash
+      - run: printenv
+      - if: false
+        name: 🌟 main
+        run: |
+          curl -fsSL https://deno.land/install.sh | sudo DENO_INSTALL=/usr/local sh -s v1.35.2
+          deno run -A https://github.com/runs-on/freebsd/raw/main/main.ts
+        env:
+          INPUT_RUNS_ON: ${{ inputs.runs-on }}
+          INPUT_STEPS: ${{ inputs.steps }}
