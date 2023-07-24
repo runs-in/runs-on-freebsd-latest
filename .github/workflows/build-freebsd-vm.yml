@@ -1,12 +1,13 @@
 name: Build FreeBSD VM
-on: push
+on:
+  workflow_call: {}
 jobs:
   build-freebsd-vm:
     runs-on: macos-12
     steps:
       - uses: actions/checkout@v3
       - run: brew install tesseract && pip3 install pytesseract opencv-python
-      - run: tools/build.sh
+      - run: tools/build-freebsd-vm.sh
       - uses: actions/upload-artifact@v2
         with:
           name: freebsd-vm

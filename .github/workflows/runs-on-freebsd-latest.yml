@@ -1,0 +1,3 @@
+name: "runs-on: freebsd-latest"
+on:
+  workflow_call: {}

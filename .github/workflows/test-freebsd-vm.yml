@@ -1,0 +1,29 @@
+name: Test FreeBSD VM
+on:
+  push:
+    branches: "main"
+    paths-ignore:
+      - .gitignore
+      - LICENSE
+      - README.md
+      - .github/**
+      - "!.github/workflows/test-freebsd-vm.yml"
+  pull_request:
+    paths-ignore:
+      - .gitignore
+      - LICENSE
+      - README.md
+      - .github/**
+      - "!.github/workflows/test-freebsd-vm.yml"
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  build-freebsd-vm:
+    uses: ./.github/workflows/build-freebsd-vm.yml
+  test-freebsd-vm:
+    needs: build-freebsd-vm
+    runs-on: macos-12
+    steps:
+      - uses: actions/checkout@v3
+      - run: tools/test-freebsd-vm.sh
