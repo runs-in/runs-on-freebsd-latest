@@ -4,8 +4,10 @@ on:
   workflow_call:
     inputs:
       runs-on:
+        type: string
         required: true
       steps:
+        type: string
         required: true
 jobs:
   freebsd:
